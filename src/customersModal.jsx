@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 
 class CustomersModal extends React.Component{
@@ -11,10 +11,26 @@ class CustomersModal extends React.Component{
       <div>
         <Modal show={this.props.visible} onHide={this.props.hide}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Add customer</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-           
+            <form >
+                <FormGroup>
+      				<ControlLabel>Name</ControlLabel>
+      				<FormControl type="text" placeholder="Enter name"/>
+    			</FormGroup>
+                <FormGroup>
+      				<ControlLabel>Price</ControlLabel>
+      				<FormControl type="text" placeholder="Enter price"/>
+    			</FormGroup>
+              <FormGroup>
+      				<ControlLabel>Phone</ControlLabel>
+      				<FormControl type="text" placeholder="Enter phone number"/>
+    		  </FormGroup>
+               <Button type="submit">
+                    Submit
+               </Button>
+			</form> 
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.hide}>Close</Button>

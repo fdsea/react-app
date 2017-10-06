@@ -10,10 +10,9 @@ class CustomersTable extends React.Component{
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
-                        <th>Table heading</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th></th>
                       </tr>   
                     </thead>
                     <tbody>
@@ -22,11 +21,9 @@ class CustomersTable extends React.Component{
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
-                        <td>Table cell</td>  
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
@@ -35,8 +32,7 @@ class CustomersTable extends React.Component{
                         <td>3</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>      
+						<td>Table cell</td>   
                       </tr>
                     </tbody>
           	      </Table>
