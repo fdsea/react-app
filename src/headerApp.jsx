@@ -1,8 +1,9 @@
 import React from 'react';
 import {Navbar,MenuItem, NavDropdown, Nav, NavItem, PageHeader, Grid, Row, Col, Button} from 'react-bootstrap';
 import CustomersModal from 'customersModal';
+import { Link } from 'react-router-dom';
 
-class ButtonA extends React.Component {
+class HeaderApp extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -33,6 +34,7 @@ class ButtonA extends React.Component {
    				</Navbar.Header>
                 <Navbar.Collapse>
                   <Nav>
+					 
                     <NavItem eventKey={1} href="#">Invoices</NavItem>
                     <NavItem eventKey={2} href="#">Products</NavItem>
 	            	<NavItem eventKey={2} href="#">Customers</NavItem>
@@ -57,4 +59,4 @@ class ButtonA extends React.Component {
 		);
 	}
 }
-export default ButtonA;
+export default HeaderApp;
