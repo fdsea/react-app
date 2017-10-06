@@ -14,7 +14,7 @@ module.exports = {
     root: [
       path.resolve(__dirname, "src"),
     ],
-    extensions: ['', '.js', '.jsx', '.css']
+    extensions: ['', '.js', '.jsx', '.css', '.json']
   },
   output: {
     path: path.join(__dirname, '/public/'),
@@ -38,7 +38,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel'
+      loader: 'babel-loader'
     }, {
       test: /\.css$/,
       loader: 'style!css'

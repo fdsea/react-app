@@ -5,6 +5,13 @@
   "scripts": {
     "start": "node server.js"
   },
+  "babel": {
+    "presets":[
+      "es2015",
+      "react",
+      "stage-0"
+    ]
+  },
   "dependencies": {
     "babel-runtime": "^6.3.19",
     "body-parser": "1.15.0",
