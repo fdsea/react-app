@@ -1,26 +1,11 @@
 import React from 'react';
 import {Navbar,MenuItem, NavDropdown, Nav, NavItem, PageHeader, Grid, Row, Col, Button} from 'react-bootstrap';
-import CustomersModal from 'customersModal';
 import { Link } from 'react-router-dom';
 
 class HeaderApp extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			showModal: false
-		};
-		this.showCustomersModal = this.showCustomersModal.bind(this);
-		this.hideCustomersModal = this.hideCustomersModal.bind(this);
-	}
-	showCustomersModal(){
-		this.setState({
-			showModal: true
-		});
-	}
-	hideCustomersModal(){
-		this.setState({
-			showModal: false
-		});
+		
 	}
 	render(){
 		return(
@@ -33,28 +18,13 @@ class HeaderApp extends React.Component {
       			    <Navbar.Toggle />
    				</Navbar.Header>
                 <Navbar.Collapse>
-                  <Nav>
-					 
-                    <NavItem eventKey={1} href="#">Invoices</NavItem>
-                    <NavItem eventKey={2} href="#">Products</NavItem>
-	            	<NavItem eventKey={2} href="#">Customers</NavItem>
+                  <Nav> 
+                     <li><Link to = "/invoices">Invoices</Link></li>
+                     <li><Link to = "/products">Products</Link></li>
+	            	 <li><Link to = "/customers">Customers</Link></li>
                   </Nav>
                 </Navbar.Collapse>
             </Navbar>
-				<Grid>
-					 <Row className="show-grid">
-      					<Col xs={12} md={8}>
-      						<PageHeader style={{display: 'inline-block'}}>Customer list</PageHeader>
-      						<Button 
-     						 	onClick = {this.showCustomersModal}
-      						 	style={{display: 'inline-block', marginLeft: '20px'}}>
-      						     	Create
-      					    </Button>
-      					    <CustomersModal visible = {this.state.showModal} hide={this.hideCustomersModal}/>
-      					</Col>
-    				</Row>
-				</Grid>	
-			
 		</div>
 		);
 	}
