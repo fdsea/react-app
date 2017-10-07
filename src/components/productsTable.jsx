@@ -2,9 +2,23 @@
 
 import React from 'react';
 import {Table, Grid, Row, Col} from 'react-bootstrap';
+import ProductEntry  from './productEntry';
+
 
 class ProductsTable extends React.Component{
+	constructor(props){
+		super(props);
+		this.arr = [
+			{id: 1, name: 'John', price: 'addd'},
+			{id: 1, name: 'John', price: 'addd'},
+			{id: 1, name: 'John', price: 'addd'},
+			{id: 1, name: 'John', price: 'addd'}
+		];
+	}
 	render(){
+		let entrys = this.arr.map((value, index)=>{
+			return <ProductEntry {...value}/>
+		});
 		return(
 			<Grid>
 				<Row>
@@ -14,28 +28,10 @@ class ProductsTable extends React.Component{
                         <th>#</th>
                         <th>Name</th>
                         <th>Price</th>
-                       
                       </tr>   
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-						
-                      </tr>
+                      {entrys}
                     </tbody>
           	      </Table>
 				</Row>

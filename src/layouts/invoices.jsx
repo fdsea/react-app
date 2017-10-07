@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
+
 
 const Invoices = () => {
 	return (
-		<div>
-			<h2>Invoices</h2>
-		</div>	
+		<Grid>
+			<Row className="show-grid">
+				<Col xs={12} md={8}>
+					<PageHeader>Invoices</PageHeader>
+				</Col>
+			</Row>
+		</Grid>	
 		);
 };
  export default Invoices;

@@ -1,6 +1,6 @@
 import React from 'react';
-import CustomersModal from './../customersModal';
-import CustomersTable from './../customersTable';
+import CustomersModal from './../components/customersModal';
+import CustomersTable from './../components/customersTable';
 import { Grid, Row, Col, Button, PageHeader } from 'react-bootstrap';
 
 class Customers extends React.Component{

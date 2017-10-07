@@ -12,9 +12,10 @@ class PageContent extends React.Component{
 	render(){
 		return(
 			<main>
-			    <Route exact path="/customers" component={Customers} />
+			    <Route exact path="/" component={Customers} />
 				<Route path="/invoices" component={Invoices} />
 				<Route path="/products" component={Products} />
+				<Route path="/customers" component={Customers} />
 			</main>
 		);
 	}

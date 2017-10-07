@@ -11,8 +11,8 @@ class CustomersTable extends React.Component{
                       <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Price</th>
-                        <th></th>
+                        <th>Addres</th>
+                        <th>Phone</th>
                       </tr>   
                     </thead>
                     <tbody>
