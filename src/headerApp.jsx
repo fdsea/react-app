@@ -19,9 +19,9 @@ class HeaderApp extends React.Component {
    				</Navbar.Header>
                 <Navbar.Collapse>
                   <Nav> 
-                     <li><Link to = "/invoices">Invoices</Link></li>
-                     <li><Link to = "/products">Products</Link></li>
-	            	 <li><Link to = "/customers">Customers</Link></li>
+                     <li key={0}><Link to = "/invoices">Invoices</Link></li>
+                     <li key={1}><Link to = "/products">Products</Link></li>
+	            	 <li key={2}><Link to = "/customers">Customers</Link></li>
                   </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -20,8 +20,8 @@ class CustomersModal extends React.Component{
       				<FormControl type="text" placeholder="Enter name"/>
     			</FormGroup>
                 <FormGroup>
-      				<ControlLabel>Price</ControlLabel>
-      				<FormControl type="text" placeholder="Enter price"/>
+      				<ControlLabel>Address</ControlLabel>
+      				<FormControl type="text" placeholder="Enter address"/>
     			</FormGroup>
               <FormGroup>
       				<ControlLabel>Phone</ControlLabel>

@@ -1,12 +1,12 @@
 
 import React from 'react';
 
-const CustomerEntry = ({id, name, addres, phone}) => {
+const CustomerEntry = ({id, name, address, phone}) => {
 	return(
-		<tr key={id}>
+		<tr>
 			<td>{ id }</td>
 			<td>{ name }</td>
-			<td>{ addres }</td>
+			<td>{ address }</td>
 			<td>{ phone }</td>	
 	 	</tr>
 	);

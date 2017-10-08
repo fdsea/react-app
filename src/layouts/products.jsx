@@ -2,6 +2,7 @@ import React from 'react';
 import ProductsModal from './../components/productsModal';
 import ProductsTable from './../components/productsTable';
 import { Grid, Row, Col, Button, PageHeader } from 'react-bootstrap';
+import store from './../store';
 
 class Products extends React.Component{
 	constructor(props){
@@ -37,7 +38,7 @@ class Products extends React.Component{
       				</Col>
     			</Row>
     			<Row>
-    				<ProductsTable />
+    				<ProductsTable {...store.getState()}/>
     			</Row>
 			</Grid>
 		);

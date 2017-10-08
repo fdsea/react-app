@@ -2,6 +2,7 @@ import React from 'react';
 import CustomersModal from './../components/customersModal';
 import CustomersTable from './../components/customersTable';
 import { Grid, Row, Col, Button, PageHeader } from 'react-bootstrap';
+import store from './../store';
 
 class Customers extends React.Component{
 	constructor(props){
@@ -37,7 +38,7 @@ class Customers extends React.Component{
       				</Col>
     			</Row>
     			<Row>
-    				<CustomersTable />
+    				<CustomersTable {...store.getState()}/>
     			</Row>
 			</Grid>
 		);

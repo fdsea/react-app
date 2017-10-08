@@ -6,6 +6,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router-dom';
 import { createStore, dispatch, getState} from 'redux';
 import { Provider } from 'react-redux';
+import store from './store';
 import 'react-select/dist/react-select.css';
 
 const history = createBrowserHistory();
@@ -22,5 +23,8 @@ const App = () => {
 		</Router>   
   	);
 };
-
-render(<App />, document.getElementById('app-root'));
+const renderApp = () => {
+	render(<App />, document.getElementById('app-root'));
+}
+store.subscribe(renderApp);
+renderApp();
