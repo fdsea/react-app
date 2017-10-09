@@ -1,11 +1,11 @@
 import React from 'react';
 import {Navbar,MenuItem, NavDropdown, Nav, NavItem, PageHeader, Grid, Row, Col, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import store from './store';
 
 class HeaderApp extends React.Component {
 	constructor(props){
 		super(props);
-		
 	}
 	render(){
 		return(

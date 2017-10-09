@@ -3,12 +3,14 @@ import { Route, Link} from 'react-router-dom';
 import Customers from 'layouts/customers';
 import Products from 'layouts/products';
 import Invoices from 'layouts/invoices';
+import store from './store';
 
 
 class PageContent extends React.Component{
 	constructor(props){
 		super(props);
 	}
+	
 	render(){
 		return(
 			<main>

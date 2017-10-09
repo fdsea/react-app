@@ -16,10 +16,7 @@ class Customers extends React.Component{
 		};
 		this.showCustomersModal = this.showCustomersModal.bind(this);
 		this.hideCustomersModal = this.hideCustomersModal.bind(this);
-		this.showEditCustomersModal = this.showEditCustomersModal.bind(this);
-		this.hideEditCustomersModal = this.hideEditCustomersModal.bind(this);
-		this.showDeleteCustomersModal = this.showDeleteCustomersModal.bind(this);
-		this.hideDeleteCustomersModal = this.hideDeleteCustomersModal.bind(this);
+		
 	}
 	showCustomersModal(){
 		this.setState({
@@ -31,27 +28,10 @@ class Customers extends React.Component{
 			showModal: false
 		});
 	}
-	showEditCustomersModal(){
-		this.setState({
-			showEditModal: true
-		});
-	}
-	hideEditCustomersModal(){
-		this.setState({
-			showEditModal: false
-		});
-	}
-	showDeleteCustomersModal(){
-		this.setState({
-			showDeleteModal: true
-		});
-	}
-	hideDeleteCustomersModal(){
-		this.setState({
-			showDeleteModal: false
-		});
-	}
+	
 	render(){
+		let st = store.getState();
+		console.log(st);
 		return(
 			<Grid>
 				<Row className="show-grid">
@@ -76,3 +56,4 @@ class Customers extends React.Component{
 
 }
 export default Customers;
+/*<EditCustomersModal {...store.getState()}/>*/

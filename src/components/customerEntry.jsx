@@ -13,14 +13,12 @@ const CustomerEntry = ({id, name, address, phone, num}) => {
 				<Button bsStyle="warning"
 						bsSize="xsmall"
 						onClick={()=>{
-							store.dispatch({type: "OPEN_EDIT", payload: {editState: true, id: id}});
-						}
-					}>Edit
+							store.dispatch({type: "OPEN_EDIT_CUSTOMERS", payload: {editState: true, id: id}})}}>Edit
 				</Button>
 				<Button bsStyle="danger"
 						bsSize="xsmall"
 						style={{marginLeft: '10px',fontSize: '0.7em'}}
-						onClick={()=>{store.dispatch({type:"OPEN_DELETE", payload: true})}}>Delete</Button>
+						onClick={()=>{store.dispatch({type:"OPEN_DELETE_CUSTOMERS", payload: {deleteState: true, id: num-1}})}}>Delete</Button>
 			</td>	
 	 	</tr>
 	);

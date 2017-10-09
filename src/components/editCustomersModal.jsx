@@ -19,7 +19,6 @@ class EditCustomersModal extends React.Component{
     this.changeName = this.changeName.bind(this);
     this.changeAddress = this.changeAddress.bind(this);
     this.changePhone = this.changePhone.bind(this);
-    this.setValue = this.setValue.bind(this);
   }
   changeName(e){
     this.setState({
@@ -37,15 +36,10 @@ class EditCustomersModal extends React.Component{
       editValue: {...this.state.editValue, phone: e.target.value}
     }); 
   }
-  setValue(){
-   // let a = [...document.querySelectorAll('.editFormQuerySelector')].map((v)=>{return v.value});
-    //this.props.customerReducer.dataCustomers
-
-  }
+  
   render(){
-    
     return(
-        <Modal show={this.props.customersReducer.editModal.editState} onHide={()=>{store.dispatch({type: "CLOSE_EDIT", payload: {editState: false, id: 1}})}}>
+        <Modal show={this.props.customersReducer.editModal.editState} onHide={()=>{store.dispatch({type: "CLOSE_EDIT_CUSTOMERS", payload: {editState: false, id: 1}})}}>
           <Modal.Header closeButton>
             <Modal.Title>Edit customer {this.props.customersReducer.editModal.id}</Modal.Title>
           </Modal.Header>
@@ -53,23 +47,38 @@ class EditCustomersModal extends React.Component{
             <Form>
               <FormGroup>
                 <ControlLabel>Name</ControlLabel>
-                <FormControl type="text" className="editFormQuerySelector" placeholder="Enter name" ref="name" onChange = {this.changeName} defaultValue = {this.props.customersReducer.getCustomer().name} />
+                <FormControl type="text" 
+                             className="editFormQuerySelector"
+                             placeholder="Enter name"  
+                             onChange = {this.changeName} 
+                             defaultValue = {'yuytu'} />
+                              
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Address</ControlLabel>
-                <FormControl type="text" className="editFormQuerySelector" placeholder="Enter address" ref="address" onChange = {this.changeAddress} defaultValue={this.props.customersReducer.getCustomer().address} />
+                <FormControl type="text"
+                             className="editFormQuerySelector"
+                             placeholder="Enter address" 
+                             onChange = {this.changeAddress} 
+                             defaultValue={'qweqweqe'} />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Phone</ControlLabel>
-                <FormControl type="text" className="editFormQuerySelector" placeholder="Enter phone number" ref="phone" onChange = {this.changePhone} defaultValue = {this.props.customersReducer.getCustomer().phone} />
+                <FormControl type="text"
+                             className="editFormQuerySelector"
+                             placeholder="Enter phone number"
+                             onChange = {this.changePhone}
+                             defaultValue = {'qweqeqwe'} />
               </FormGroup>
-              <Button onClick = {()=>{store.dispatch({type: "EDIT_CUSTOMERS", payload: 2})}}>
+              <Button onClick = {()=>{
+                let a = [...document.querySelectorAll('.editFormQuerySelector')].map((v)=>{return v.value});
+                  store.dispatch({type: "EDIT_CUSTOMERS", payload: {id: this.props.customersReducer.editModal.id, name: a[0], address: a[1], phone: a[2]}})}}>
                 Submit
               </Button>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={()=>{store.dispatch({type: "CLOSE_EDIT", payload: {editState: false, id: 1}})}}>Close</Button>
+            <Button onClick={()=>{store.dispatch({type: "CLOSE_EDIT_CUSTOMERS", payload: {editState: false, id: 1}})}}>Close</Button>
           </Modal.Footer>
         </Modal>
       );
@@ -77,3 +86,4 @@ class EditCustomersModal extends React.Component{
 }
 
 export default EditCustomersModal;
+//if(!this.props.customersReducer.getCustomer().name) { return this.props.customersReducer.getCustomer().name}else{return 'weaSas'} } />
