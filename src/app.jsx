@@ -21,6 +21,7 @@ const App = () => {
 		</Router>   
   	);
 };
+console.log(store.getState());
 const renderApp = () => {
 	render(<App />, document.getElementById('app-root'));
 }

@@ -22,9 +22,8 @@ class CustomersTable extends React.Component{
   }
 
 	render(){
-     console.log(store.getState());
     let entrys = this.props.customersReducer.dataCustomers.map((value, index)=>{
-      return <CustomerEntry key={index} {...value} id={index+1}/>
+      return <CustomerEntry key={index} {...value} num={index+1} {...store.getState()}/>
     });
 		return(
 			<Grid>
