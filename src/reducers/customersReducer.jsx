@@ -6,18 +6,19 @@ const beginCustomersState = {
 	deleteModal: {deleteState: false, id: 1},
 	dataCustomers: [],
 	getCustomer : function () {
+			let a = this.dataCustomers.find((value)=>{
+			 	if(value.id === this.editModal.id){
+			 		return value;
+			 	}
+			 })
 		
-		const isCustomer = this.dataCustomers.find((value)=>{
-			if(value.id === this.editModal.id){
-				return value;
-			}
-		});
-		return isCustomer;
+		return a;
 	},
+
 	findIndex : function () {
 		 this.dataCustomers.find((value, item)=>{
 			if(value.id === this.deleteModal.id){
-				console.log(item);
+				
 				return item;
 			}
 		});

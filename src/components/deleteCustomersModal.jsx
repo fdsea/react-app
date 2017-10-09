@@ -10,7 +10,6 @@ class DeleteCustomerModal extends React.Component{
   }
 
   render(){
-     console.log(this.props.customersReducer.deleteModal.id);
     return(
         <Modal show={this.props.customersReducer.deleteModal.deleteState} onHide={()=>{
         	store.dispatch({type: "CLOSE_DELETE_CUSTOMERS", payload: {deleteState: false}});

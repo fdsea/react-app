@@ -41,7 +41,6 @@ class App extends React.Component {
   		);
 	}
 };
-console.log(store.getState());
 const renderApp = () => {
 	render(<App />, document.getElementById('app-root'));
 }

@@ -19,6 +19,7 @@ class EditCustomersModal extends React.Component{
     this.changeName = this.changeName.bind(this);
     this.changeAddress = this.changeAddress.bind(this);
     this.changePhone = this.changePhone.bind(this);
+    this.setValue =  this.setValue.bind(this);
   }
   changeName(e){
     this.setState({
@@ -36,7 +37,15 @@ class EditCustomersModal extends React.Component{
       editValue: {...this.state.editValue, phone: e.target.value}
     }); 
   }
-  
+  setValue(p){
+    if(p === undefined){
+      return 'Hello!';
+      
+    }else{
+      return p;
+     
+    }
+  }
   render(){
     return(
         <Modal show={this.props.customersReducer.editModal.editState} onHide={()=>{store.dispatch({type: "CLOSE_EDIT_CUSTOMERS", payload: {editState: false, id: 1}})}}>
@@ -51,7 +60,7 @@ class EditCustomersModal extends React.Component{
                              className="editFormQuerySelector"
                              placeholder="Enter name"  
                              onChange = {this.changeName} 
-                             defaultValue = {'yuytu'} />
+                             defaultValue = {this.setValue()} />
                               
               </FormGroup>
               <FormGroup>
@@ -60,7 +69,7 @@ class EditCustomersModal extends React.Component{
                              className="editFormQuerySelector"
                              placeholder="Enter address" 
                              onChange = {this.changeAddress} 
-                             defaultValue={'qweqweqe'} />
+                             defaultValue={this.setValue('sadsadasd')} />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Phone</ControlLabel>
@@ -68,7 +77,7 @@ class EditCustomersModal extends React.Component{
                              className="editFormQuerySelector"
                              placeholder="Enter phone number"
                              onChange = {this.changePhone}
-                             defaultValue = {'qweqeqwe'} />
+                             defaultValue = {this.setValue('asdassad')} />
               </FormGroup>
               <Button onClick = {()=>{
                 let a = [...document.querySelectorAll('.editFormQuerySelector')].map((v)=>{return v.value});

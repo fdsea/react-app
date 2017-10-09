@@ -31,7 +31,7 @@ class Customers extends React.Component{
 	
 	render(){
 		let st = store.getState();
-		console.log(st);
+		//console.log(st);
 		return(
 			<Grid>
 				<Row className="show-grid">
