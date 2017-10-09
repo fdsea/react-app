@@ -24,7 +24,7 @@ const customersReducer = (state = beginCustomersState, action) => {
 
 			case "LOAD_DATA_CUSTOMERS": return state = {...state, dataCustomers:[...state.dataCustomers, ...action.payload]};
 			case "ADD_CUSTOMERS": return state = {...state, dataCustomers: [...state.dataCustomers, ...action.payload]};
-			case "EDIT_CUSTOMERS": return state = {...state, editID: action.payload};
+			//case "EDIT_CUSTOMERS": return state = {...state, dataCustomers: [...state.dataCustomers].splice(action.payload, action.payload+1, {id: 1,name:"hello", address: 'e', phone: 'we')};
 			case "DELETE_CUSTOMERS": return state = {...state, deleteID: action.payload};
 			default: return state;
 

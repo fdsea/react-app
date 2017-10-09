@@ -2,11 +2,9 @@
 import React from 'react';
 import { Modal, Button, FormGroup, ControlLabel, FormControl, Form } from 'react-bootstrap';
 import store from './../store';
-console.log(store.getState());
 
 
 class EditCustomersModal extends React.Component{
-
   constructor(props){
     super(props);
     this.state={
@@ -40,8 +38,9 @@ class EditCustomersModal extends React.Component{
     }); 
   }
   setValue(){
-    let a = [...document.querySelectorAll('.editFormQuerySelector')].map((v)=>{return v.value});
-    console.log(a);
+   // let a = [...document.querySelectorAll('.editFormQuerySelector')].map((v)=>{return v.value});
+    //this.props.customerReducer.dataCustomers
+
   }
   render(){
     
@@ -64,7 +63,7 @@ class EditCustomersModal extends React.Component{
                 <ControlLabel>Phone</ControlLabel>
                 <FormControl type="text" className="editFormQuerySelector" placeholder="Enter phone number" ref="phone" onChange = {this.changePhone} defaultValue = {this.props.customersReducer.getCustomer().phone} />
               </FormGroup>
-              <Button onClick = {this.setValue}>
+              <Button onClick = {()=>{store.dispatch({type: "EDIT_CUSTOMERS", payload: 2})}}>
                 Submit
               </Button>
             </Form>
