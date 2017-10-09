@@ -34,7 +34,7 @@ class Customers extends React.Component{
       						style={{display: 'inline-block', marginLeft: '20px'}}>
       						Create
       					</Button>
-      					<CustomersModal visible = {this.state.showModal} hide={this.hideCustomersModal}/>
+      					<CustomersModal visible = {this.state.showModal} hide={this.hideCustomersModal} {...store.getState()}/>
       				</Col>
     			</Row>
     			<Row>

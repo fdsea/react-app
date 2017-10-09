@@ -1,11 +1,59 @@
 import React from 'react';
-import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Modal, Button, FormGroup, ControlLabel, FormControl, Form } from 'react-bootstrap';
+import store from './../store';
 
 
 class CustomersModal extends React.Component{
 	constructor(props){
 		super(props);
+    this.state = {
+      localId: 0,
+      localNameValue: '',
+      localAddressValue: '',
+      localPhoneValue: ''
+    };
+
+    this.changeName = this.changeName.bind(this);
+    this.changeAddress = this.changeAddress.bind(this);
+    this.changePhone = this.changePhone.bind(this);
+    this.addCustomers = this.addCustomers.bind(this);
+    this.clearFields = this.clearFields.bind(this);
 	}
+  changeName(e){
+    this.setState({
+      localNameValue: e.target.value
+    });
+  }
+    changeAddress(e){
+    this.setState({
+      localAddressValue: e.target.value
+    });
+  }
+    changePhone(e){
+    this.setState({
+      localPhoneValue: e.target.value
+    });
+  }
+    clearFields(){
+      this.setState({
+        localNameValue: '',
+        localAddressValue: '',
+        localPhoneValue: ''
+      });
+    }
+    addCustomers(){
+      store.dispatch({type: "ADD_CUSTOMERS", payload: [{
+              id: this.props.customersReducer.dataCustomers.length+1,
+              name: this.state.localNameValue,
+              address: this.state.localAddressValue,
+              phone: this.state.localPhoneValue
+      }]
+    });
+       
+    setTimeout(()=>{
+      this.clearFields();
+    },1000);
+  }
   render() {
     return (
       <div>
@@ -14,23 +62,23 @@ class CustomersModal extends React.Component{
             <Modal.Title>Add customer</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form >
-                <FormGroup>
-      				<ControlLabel>Name</ControlLabel>
-      				<FormControl type="text" placeholder="Enter name"/>
-    			</FormGroup>
-                <FormGroup>
-      				<ControlLabel>Address</ControlLabel>
-      				<FormControl type="text" placeholder="Enter address"/>
-    			</FormGroup>
+            <Form>
               <FormGroup>
-      				<ControlLabel>Phone</ControlLabel>
-      				<FormControl type="text" placeholder="Enter phone number"/>
-    		  </FormGroup>
-               <Button type="submit">
-                    Submit
-               </Button>
-			</form> 
+      				  <ControlLabel>Name</ControlLabel>
+      				  <FormControl type="text" placeholder="Enter name" value={this.state.localNameValue} onChange={this.changeName}/>
+    			    </FormGroup>
+              <FormGroup>
+      				  <ControlLabel>Address</ControlLabel>
+      				  <FormControl type="text" placeholder="Enter address" value={this.state.localAddressValue} onChange={this.changeAddress}/>
+    			    </FormGroup>
+              <FormGroup>
+      				  <ControlLabel>Phone</ControlLabel>
+      				  <FormControl type="text" placeholder="Enter phone number" value={this.state.localPhoneValue} onChange={this.changePhone}/>
+    		      </FormGroup>
+              <Button onClick={this.addCustomers}>
+                Submit
+              </Button>
+			      </Form> 
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.hide}>Close</Button>

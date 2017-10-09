@@ -11,8 +11,6 @@ import 'react-select/dist/react-select.css';
 
 const history = createBrowserHistory();
 
-
-
 const App = () => {
 	return(
 		<Router history={history}>

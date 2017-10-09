@@ -7,7 +7,6 @@ import store from './../store';
 class CustomersTable extends React.Component{
   constructor(props){
     super(props);
-    console.log(this.props.customersReducer.dataCustomers);
   }
   fetchAPI(url){
         fetch(url,{method: 'get'})
@@ -21,27 +20,28 @@ class CustomersTable extends React.Component{
     let url = '/api/customers';
     this.fetchAPI(url);
   }
+
 	render(){
-    
+     console.log(store.getState());
     let entrys = this.props.customersReducer.dataCustomers.map((value, index)=>{
       return <CustomerEntry key={index} {...value} id={index+1}/>
     });
 		return(
 			<Grid>
 				<Row>
-			      <Table responsive>
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                      </tr>   
-                    </thead>
-                    <tbody>
-                     {entrys}
-                    </tbody>
-          	      </Table>
+			    <Table responsive>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+              </tr>   
+            </thead>
+            <tbody>
+              {entrys}
+            </tbody>
+          </Table>
 				</Row>
 			</Grid>
 		);
