@@ -2,14 +2,11 @@ import React from 'react';
 
 const beginCustomersState = {
 	openCreateModal: false,
-	openEditModal: false,
-	editID: 1,
-	deleteID: 1,
 	editModal: {editState: false, id: 1},
 	dataCustomers: [{id: 1, name: 'Helen', address: 'Lorem', phone: '23-23-23'}],
-	getCustomer : (id) => {
-		const isCustomer = this.dataCustomers.filter((value)=>{
-			if(value.id === id){
+	getCustomer : function () {
+		const isCustomer = this.dataCustomers.find((value)=>{
+			if(value.id === this.editModal.id){
 				return value;
 			}
 		});
@@ -17,7 +14,7 @@ const beginCustomersState = {
 	}
 };
 
-const customersReducer = (state=beginCustomersState, action) => {
+const customersReducer = (state = beginCustomersState, action) => {
 		switch(action.type){
 			case "OPEN_CREATE_MODAL_CUSTOMERS": return state = {...state, openCreateModal: true};
 
