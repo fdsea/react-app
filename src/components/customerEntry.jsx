@@ -13,8 +13,7 @@ const CustomerEntry = ({id, name, address, phone, num}) => {
 				<Button bsStyle="warning"
 						bsSize="xsmall"
 						onClick={()=>{
-							store.dispatch({type: "OPEN_EDIT_CUSTOMERS", payload: {editState: true, id: id}})}}>Edit
-				</Button>
+							store.dispatch({type: "OPEN_EDIT_CUSTOMERS", payload: {editState: true, id: id}})}}>Edit</Button>
 				<Button bsStyle="danger"
 						bsSize="xsmall"
 						style={{marginLeft: '10px',fontSize: '0.7em'}}

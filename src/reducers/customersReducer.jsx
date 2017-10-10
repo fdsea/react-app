@@ -5,23 +5,16 @@ const beginCustomersState = {
 	editModal: {editState: false, id: 1},
 	deleteModal: {deleteState: false, id: 1},
 	dataCustomers: [],
+	loadField: [],
 	getCustomer : function () {
-			let a = this.dataCustomers.find((value)=>{
-			 	if(value.id === this.editModal.id){
-			 		return value;
-			 	}
-			 })
-		
-		return a;
-	},
-
-	findIndex : function () {
-		 this.dataCustomers.find((value, item)=>{
-			if(value.id === this.deleteModal.id){
-				
-				return item;
-			}
-		});
+		if(this.editModal.editState){
+			const isCustomer = this.dataCustomers.find((value)=>{
+			 	if(value.id === this.editModal.id){return value;}
+			 });
+			return isCustomer;
+		}else{
+			return {id:'', name: '', address: '', photo:''}
+		}
 	}
 };
 const customersReducer = (state = beginCustomersState, action) => {
@@ -41,6 +34,7 @@ const customersReducer = (state = beginCustomersState, action) => {
 				...state.dataCustomers.slice(state.deleteModal.id + 1)
 				]
 			};
+			case "LOAD_FIELD": return state = {...state, loadField: [...action.payload]};
 			default: return state;
 	}
 };

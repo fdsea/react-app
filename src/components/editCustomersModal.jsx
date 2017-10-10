@@ -14,12 +14,10 @@ class EditCustomersModal extends React.Component{
         address: "",
         phone: ""
       }
-
     };
     this.changeName = this.changeName.bind(this);
     this.changeAddress = this.changeAddress.bind(this);
     this.changePhone = this.changePhone.bind(this);
-    this.setValue =  this.setValue.bind(this);
   }
   changeName(e){
     this.setState({
@@ -37,20 +35,11 @@ class EditCustomersModal extends React.Component{
       editValue: {...this.state.editValue, phone: e.target.value}
     }); 
   }
-  setValue(p){
-    if(p === undefined){
-      return 'Hello!';
-      
-    }else{
-      return p;
-     
-    }
-  }
   render(){
     return(
         <Modal show={this.props.customersReducer.editModal.editState} onHide={()=>{store.dispatch({type: "CLOSE_EDIT_CUSTOMERS", payload: {editState: false, id: 1}})}}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit customer {this.props.customersReducer.editModal.id}</Modal.Title>
+            <Modal.Title>Edit customer</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
@@ -60,7 +49,7 @@ class EditCustomersModal extends React.Component{
                              className="editFormQuerySelector"
                              placeholder="Enter name"  
                              onChange = {this.changeName} 
-                             defaultValue = {this.setValue()} />
+                             defaultValue = {this.props.customersReducer.getCustomer().name } />
                               
               </FormGroup>
               <FormGroup>
@@ -69,7 +58,7 @@ class EditCustomersModal extends React.Component{
                              className="editFormQuerySelector"
                              placeholder="Enter address" 
                              onChange = {this.changeAddress} 
-                             defaultValue={this.setValue('sadsadasd')} />
+                             defaultValue={this.props.customersReducer.getCustomer().address } />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Phone</ControlLabel>
@@ -77,7 +66,7 @@ class EditCustomersModal extends React.Component{
                              className="editFormQuerySelector"
                              placeholder="Enter phone number"
                              onChange = {this.changePhone}
-                             defaultValue = {this.setValue('asdassad')} />
+                             defaultValue = {this.props.customersReducer.getCustomer().phone} />
               </FormGroup>
               <Button onClick = {()=>{
                 let a = [...document.querySelectorAll('.editFormQuerySelector')].map((v)=>{return v.value});

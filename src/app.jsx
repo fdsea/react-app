@@ -16,21 +16,22 @@ const history = createBrowserHistory();
 class App extends React.Component {
 	constructor(props){
 		super(props);
-		this.fetchAPI = this.fetchAPI.bind(this);
+		//this.fetchAPI = this.fetchAPI.bind(this);
 	}
 	fetchAPI(url){
-        fetch(url,{method: 'get'})
+        fetch(url, {method: 'get'})
        .then((res) => res.json() )
        .then((data) => {
         store.dispatch({type:"LOAD_DATA_CUSTOMERS", payload: data});
+   
       })
       .catch((err) => console.log('database err') )
     }
-    componentDidMount(){
-      this.fetchAPI('/api/customers');  
+    componentWillMount(){
+        this.fetchAPI('/api/customers');
     }
-	
 	render(){
+		//this.fetchAPI('/api/customers');
 		return(
 			<Router history={history}>
 				<div>
