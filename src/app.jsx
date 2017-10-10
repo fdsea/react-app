@@ -16,7 +16,6 @@ const history = createBrowserHistory();
 class App extends React.Component {
 	constructor(props){
 		super(props);
-		//this.fetchAPI = this.fetchAPI.bind(this);
 	}
 	fetchAPI(url){
         fetch(url, {method: 'get'})
@@ -31,7 +30,6 @@ class App extends React.Component {
         this.fetchAPI('/api/customers');
     }
 	render(){
-		//this.fetchAPI('/api/customers');
 		return(
 			<Router history={history}>
 				<div>

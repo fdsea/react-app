@@ -67,7 +67,5 @@ class EditProductsModal extends React.Component{
         </Modal>
       );
   }
-  
 }
-
 export default EditProductsModal;

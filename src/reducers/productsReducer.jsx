@@ -1,7 +1,6 @@
 import React from 'react';
 
 const beginProductsState = {
-	openCreateModal: false,
 	editModal: {editState: false, id: 1},
 	deleteModal: {deleteState: false, id: 1},
 	dataProducts: [],

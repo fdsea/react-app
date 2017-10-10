@@ -15,8 +15,7 @@ class Customers extends React.Component{
 			showDeleteModal: false
 		};
 		this.showCustomersModal = this.showCustomersModal.bind(this);
-		this.hideCustomersModal = this.hideCustomersModal.bind(this);
-		
+		this.hideCustomersModal = this.hideCustomersModal.bind(this);	
 	}
 	showCustomersModal(){
 		this.setState({
@@ -28,15 +27,12 @@ class Customers extends React.Component{
 			showModal: false
 		});
 	}
-	
 	render(){
-		let st = store.getState();
-		console.log(st);
 		return(
 			<Grid>
 				<Row className="show-grid">
       				<Col xs={12} md={8}>
-      					<PageHeader style={{display: 'inline-block'}}>Customer list</PageHeader>
+      					<PageHeader style={{display: 'inline-block', borderBottom: 'none'}}>Customer list</PageHeader>
       					<Button 
      						onClick = {this.showCustomersModal}
       						style={{display: 'inline-block', marginLeft: '20px'}}>
@@ -53,7 +49,5 @@ class Customers extends React.Component{
 			</Grid>
 		);
 	}
-
 }
 export default Customers;
-/*<EditCustomersModal {...store.getState()}/>*/

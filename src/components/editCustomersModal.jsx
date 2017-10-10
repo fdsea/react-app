@@ -82,6 +82,4 @@ class EditCustomersModal extends React.Component{
       );
   }
 }
-
 export default EditCustomersModal;
-//if(!this.props.customersReducer.getCustomer().name) { return this.props.customersReducer.getCustomer().name}else{return 'weaSas'} } />

@@ -1,22 +1,22 @@
 import React from 'react';
 
 const beginCustomersState = {
-	openCreateModal: false,
-	editModal: {editState: false, id: 1},
-	deleteModal: {deleteState: false, id: 1},
-	dataCustomers: [],
-	
-	getCustomer : function () {
-		if(this.editModal.editState){
-			const isCustomer = this.dataCustomers.find((value)=>{
-			 	if(value.id === this.editModal.id){return value;}
-			 });
-			return isCustomer;
-		}else{
-			return {id:'', name: '', address: '', photo:''}
+		editModal: {editState: false, id: 1},
+		deleteModal: {deleteState: false, id: 1},
+		dataCustomers: [],
+		getCustomer : function () {
+			if(this.editModal.editState){
+				const isCustomer = this.dataCustomers.find((value)=>{
+			 		if(value.id === this.editModal.id){
+			 			return value;
+			 		}
+			 	});
+				return isCustomer;
+			}else{
+				return {id:'', name: '', address: '', photo:''}
+			}
 		}
-	}
-};
+	};
 const customersReducer = (state = beginCustomersState, action) => {
 	
 		switch(action.type){

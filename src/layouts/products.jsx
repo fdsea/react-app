@@ -34,7 +34,7 @@ class Products extends React.Component{
 			<Grid>
 				<Row className="show-grid">
       				<Col xs={12} md={8}>
-      					<PageHeader style={{display: 'inline-block'}}>Products list</PageHeader>
+      					<PageHeader style={{display: 'inline-block', borderBottom: 'none'}}>Products list</PageHeader>
       					<Button 
      						onClick = {this.showProductsModal}
       						style={{display: 'inline-block', marginLeft: '20px'}}>

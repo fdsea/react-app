@@ -3,12 +3,9 @@ import { Modal, Button, FormGroup, ControlLabel, FormControl, Form } from 'react
 import store from './../store';
 
 class DeleteCustomerModal extends React.Component{
-
   constructor(props){
     super(props);
-
   }
-
   render(){
     return(
         <Modal show={this.props.customersReducer.deleteModal.deleteState} onHide={()=>{

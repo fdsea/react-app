@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import store from './../store';
+
 const ProductEntry = ({id, name, price, num}) => {
 	return(
 		<tr>

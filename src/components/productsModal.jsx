@@ -11,7 +11,6 @@ class ProductsModal extends React.Component{
       localNameValue: '',
       localPriceValue: ''
     };
-
     this.changeName = this.changeName.bind(this);
     this.changePrice = this.changePrice.bind(this);
     this.addProducts = this.addProducts.bind(this);
