@@ -1,6 +1,8 @@
 import React from 'react';
 import ProductsModal from './../components/productsModal';
 import ProductsTable from './../components/productsTable';
+import EditProductsModal from './../components/editProductsModal';
+import DeleteProductsModal from './../components/deleteProductsModal';
 import { Grid, Row, Col, Button, PageHeader } from 'react-bootstrap';
 import store from './../store';
 
@@ -8,10 +10,13 @@ class Products extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			showModal: false
+			showModal: false,
+			showEditModal: false,
+			showDeleteModal: false
 		};
 		this.showProductsModal = this.showProductsModal.bind(this);
 		this.hideProductsModal = this.hideProductsModal.bind(this);
+		
 	}
 	showProductsModal(){
 		this.setState({
@@ -23,6 +28,7 @@ class Products extends React.Component{
 			showModal: false
 		});
 	}
+	
 	render(){
 		return(
 			<Grid>
@@ -34,15 +40,18 @@ class Products extends React.Component{
       						style={{display: 'inline-block', marginLeft: '20px'}}>
       						Create
       					</Button>
-      					<ProductsModal visible = {this.state.showModal} hide={this.hideProductsModal}/>
+      					<ProductsModal visible = {this.state.showModal} hide={this.hideProductsModal} {...store.getState()}/>
+      					<EditProductsModal {...store.getState()}/>
+      					<DeleteProductsModal {...store.getState()}/>
       				</Col>
     			</Row>
     			<Row>
-    				<ProductsTable {...store.getState()}/>
+    				<ProductsTable {...store.getState()} />
     			</Row>
 			</Grid>
 		);
 	}
 
 }
- export default Products;
+export default Products;
+/*<EditProductsModal {...store.getState()}/>*/

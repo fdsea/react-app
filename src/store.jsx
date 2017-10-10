@@ -7,7 +7,4 @@ const reducer = combineReducers({productsReducer, customersReducer});
 
 const store = createStore(reducer);
 
-
- 
-//console.log(store.getState());
 export default store;

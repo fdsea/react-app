@@ -26,7 +26,7 @@ class ProductsTable extends React.Component{
 	render(){
     console.log(store.getState());
 		let entrys = this.props.productsReducer.dataProducts.map((value, index)=>{
-			return <ProductEntry key={index} {...value} id={index+1}/>
+			return <ProductEntry key={index} {...value} num={index+1} {...store.getState()}/>
 		});
 		return(
 			<Grid>
