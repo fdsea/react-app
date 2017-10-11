@@ -3,7 +3,29 @@ import React from 'react';
 
 const beginInvoicesState = {
 		editInvoicesModal: false,
-		dataInvoices:[]
+
+		dataInvoices:[
+		{
+			id: 1,
+			name: 'John',
+			products: [
+				{
+					name: 'tea',
+					price: 40.45,
+					quanity: 1
+				},
+				{
+					name: 'teaasd',
+					price: 40.42131235,
+					quanity: 123
+				}
+			],
+			total: function(){
+				return +this.products.map((value)=>(value.price * value.quanity) - ((value.price * value.quanity) / 100 * this.discount)).reduce( (a, b) => a + b).toFixed(2);
+			},
+			discount: 20
+		}
+	]
 };
 
 const invoicesReducer = (state = beginInvoicesState, action) => {

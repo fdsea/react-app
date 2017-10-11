@@ -3,13 +3,16 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import store from './../store';
 
-const InvoicesEntry = ({id, customer, discount, total, num}) => {
+const InvoicesEntry = ({id, name, discount, products, total, num}) => {
 	return(
 		<tr>
-			<td>{ num }{'asdasd'}</td>
-			<td>{ customer }{'asdasd'}</td>
-			<td>{ discount }{'zxcxzc'}</td>
-			<td>{ total }{'xzczxc'}</td>
+			<td>{ num }</td>
+			<td>{ name }</td>
+			<td>{ discount }</td>
+			<td>{
+					
+				}
+			</td>
 			<td><Link key={num-1} to={`/invoices/${id}/edit`}>edit</Link></td>	
 	 	</tr>
 	);

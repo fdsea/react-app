@@ -2,7 +2,7 @@ import React from 'react';
 import InvoicesTable from './invoicesTable';
 import store from './../store';
 import { Row, Col, Button, PageHeader } from 'react-bootstrap';
-import EditInvoicesModal from './../components/editInvoicesModal';
+import CreateInvoicesModal from './../components/createInvoicesModal';
 
 const AllInvoices = () => {
 	return (
@@ -16,7 +16,7 @@ const AllInvoices = () => {
       					style={{display: 'inline-block', marginLeft: '20px'}}>
       						Create
       				</Button>
-      				<EditInvoicesModal {...store.getState()} />
+      				<CreateInvoicesModal {...store.getState()} />
 			</Col>
 			<Col>
 				<InvoicesTable {...store.getState()}/>

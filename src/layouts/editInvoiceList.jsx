@@ -18,16 +18,16 @@ class EditInvoiceCustomer extends React.Component{
 							<ControlLabel> Discount (%) </ControlLabel>
 							<FormControl></FormControl>
 						</FormGroup>
-						<FormGroup controlId="customerSelect">
+						<FormGroup >
       						<ControlLabel>Customer</ControlLabel>
-      						<FormControl componentClass="select" placeholder="select">
+      						<FormControl placeholder="select">
       							<option value="select">select</option>
         						<option value="other">...</option>
       							</FormControl>
     					</FormGroup>
-    					<FormGroup controlId="productSelect" style={{display: 'inline-block', width:"70%"}}>
+    					<FormGroup  style={{display: 'inline-block', width:"70%"}}>
       						<ControlLabel>Add Product</ControlLabel>
-      						<FormControl componentClass="select" placeholder="select">
+      						<FormControl  placeholder="select">
       							<option value="select">select</option>
         						<option value="other">...</option>
       							</FormControl>

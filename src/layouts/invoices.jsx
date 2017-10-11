@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Row, Col, PageHeader, Button } from 'react-bootstrap';
 import InvoicesTable from './../components/invoicesTable'
 import store from './../store';
-import EditInvoiceCustomer from './editInvoice';
+import EditInvoiceCustomer from './editInvoiceList';
 import { Route, Link, Switch} from 'react-router-dom';
 import AllInvoices from './../components/allInvoices';
 

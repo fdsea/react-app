@@ -17,7 +17,7 @@ class DeleteCustomerModal extends React.Component{
           <Modal.Body>
             <h3>You shure?</h3>
             <Button onClick={()=>{store.dispatch({type: "CLOSE_DELETE_CUSTOMERS", payload: {deleteState: false}})}} bsStyle="success" style={{padding: '0.5em 2em', marginRight: '1em'}} >No</Button>
-            <Button onClick={()=>{store.dispatch({type: "DELETE_CUSTOMERS", payload: 1//this.props.customersReducer.deleteModal.id
+            <Button onClick={()=>{store.dispatch({type: "DELETE_CUSTOMERS", payload: 1
           })}} bsStyle="danger">Yes</Button>
 
           </Modal.Body>

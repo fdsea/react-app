@@ -22,7 +22,7 @@ class InvoicesTable extends React.Component{
     	this.fetchAPI(url);
   	}
 	render(){
-		let entrys = [{id: 1, name: 'rrr', price: '34.34', total:'34.34'},{id: 2, name: 'rrr', price: '34.34', total:'34.34'}].map((value, index)=>{
+		let entrys = this.props.invoicesReducer.dataInvoices.map((value, index)=>{
 			return <InvoicesEntry key={index} {...value} num={index+1} {...store.getState()} />
 		});
 		return(

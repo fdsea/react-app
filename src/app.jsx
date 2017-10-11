@@ -17,17 +17,18 @@ class App extends React.Component {
 	constructor(props){
 		super(props);
 	}
-	fetchAPI(url){
+	fetchAPI(url, type){
         fetch(url, {method: 'get'})
        .then((res) => res.json() )
        .then((data) => {
-        store.dispatch({type:"LOAD_DATA_CUSTOMERS", payload: data});
+        store.dispatch({type: type, payload: data});
    
       })
       .catch((err) => console.log('database err') )
     }
     componentWillMount(){
-        this.fetchAPI('/api/customers');
+        this.fetchAPI('/api/customers',"LOAD_DATA_CUSTOMERS" );
+        this.fetchAPI('/api/products',"LOAD_DATA_PRODUCTS" );
     }
 	render(){
 		return(

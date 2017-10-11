@@ -3,7 +3,6 @@ import { Route, Link} from 'react-router-dom';
 import Customers from 'layouts/customers';
 import Products from 'layouts/products';
 import Invoices from 'layouts/invoices';
-import EditInvoice from './layouts/EditInvoice'
 import store from './store';
 
 
