@@ -19,7 +19,6 @@ class PageContent extends React.Component{
 				<Route path="/invoices" component={Invoices} />
 				<Route path="/products" component={Products} />
 				<Route path="/customers" component={Customers} />
-				<Route path="/invoices/edit" component={EditInvoice} />
 			</main>
 		);
 	}
