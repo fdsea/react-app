@@ -10,7 +10,7 @@ const InvoicesEntry = ({id, name, discount, products, total, num}) => {
 			<td>{ name }</td>
 			<td>{ discount }</td>
 			<td>{ total }</td>
-			<td><Link key={num-1} to={`/invoices/${id}/edit`}>edit</Link></td>	
+			<td><Link key={num-1} to={`/invoices/${num}/edit`}>edit</Link></td>	
 	 	</tr>
 	);
 };

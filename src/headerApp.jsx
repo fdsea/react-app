@@ -12,19 +12,19 @@ class HeaderApp extends React.Component {
 			<div>
     		 <Navbar>
     			<Navbar.Header>
-      				<Navbar.Brand>
-        			<a href="#">Invoice App</a>
-      				</Navbar.Brand>
-      			    <Navbar.Toggle />
+      			<Navbar.Brand>
+        		  <a href="#">Invoice App</a>
+      			</Navbar.Brand>
+      			<Navbar.Toggle />
    				</Navbar.Header>
-                <Navbar.Collapse>
-                  <Nav> 
-                     <li key={0}><Link to = "/invoices">Invoices</Link></li>
-                     <li key={1}><Link to = "/products">Products</Link></li>
-	            	 <li key={2}><Link to = "/customers">Customers</Link></li>
-                  </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+              <Navbar.Collapse>
+                <Nav> 
+                  <li key={0}><Link to = "/invoices">Invoices</Link></li>
+                  <li key={1}><Link to = "/products">Products</Link></li>
+	            	  <li key={2}><Link to = "/customers">Customers</Link></li>
+                </Nav>
+              </Navbar.Collapse>
+          </Navbar>
 		</div>
 		);
 	}

@@ -7,9 +7,7 @@ const beginInvoicesState = {
 		discontAdd: 0,
 		dataInvoices:[]
 };
-
 const invoicesReducer = (state = beginInvoicesState, action) => {
-console.log(state.dataInvoices)
 	switch(action.type){
 		case "OPEN_INVOICES_MODAL" : return state = {...state, editInvoicesModal: action.payload};
 		case "CLOSE_INVOICES_MODAL" : return state = {...state, editInvoicesModal: action.payload};
@@ -18,7 +16,6 @@ console.log(state.dataInvoices)
 		case "EDIT_INVOICE" : return state = {...state};
 		default: return state = {...state}; 
 	}
-
 }
 
 export default invoicesReducer;

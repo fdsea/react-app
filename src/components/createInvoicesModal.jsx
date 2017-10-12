@@ -55,7 +55,6 @@ class CreateInvoicesModal extends React.Component{
     	this.props.productsReducer.dataProducts.filter((value)=>{
       		if(this.productValue.value == value.name){
         		this.setState({
-        			id: 23,
         			customer: this.customerValue.value,
         			finalTotal: this.finalTotalValue.innerText,
           			productPrice: value.price,

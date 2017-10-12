@@ -6,6 +6,7 @@ import DeleteProductsModal from './../components/deleteProductsModal';
 import { Grid, Row, Col, Button, PageHeader } from 'react-bootstrap';
 import store from './../store';
 
+
 class Products extends React.Component{
 	constructor(props){
 		super(props);

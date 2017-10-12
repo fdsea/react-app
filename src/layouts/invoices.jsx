@@ -11,13 +11,12 @@ class Invoices extends React.Component{
 		super(props);
 	}
 	render(){
-		console.log(store.getState());
 		return (
 			<Grid>
-				<Switch>
-					<Route exact path='/invoices' component = { AllInvoices } />
-					<Route path="/invoices/:number/edit" component = { EditInvoiceCustomer } />
-				</Switch>	
+			<Switch>
+				<Route exact path='/invoices' component = { AllInvoices } />
+				<Route path="/invoices/:number/edit" component = { EditInvoiceCustomer } />
+			</Switch>
 			</Grid>	
 		);
 	}
