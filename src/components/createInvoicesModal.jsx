@@ -9,7 +9,7 @@ class CreateInvoicesModal extends React.Component{
 	constructor(){
 		super();
 		this.state={
-			id:'',
+			id: '',
 			customer: '',
 			productName: '',
       		productPrice: '',
@@ -17,14 +17,12 @@ class CreateInvoicesModal extends React.Component{
 			products: [],
 			discount: 0,
       		total: [],
-      		finalTotal: ''
-      	   
+      		finalTotal: ''   
 		};
 		this.changeCustomer = this.changeCustomer.bind(this);
 		this.changeProduct = this.changeProduct.bind(this);
 		this.addQuanityCell = this.addQuanityCell.bind(this);
 		this.spCell = this.spCell.bind(this);
-    	this.countTotal = this.countTotal.bind(this);
     	this.changeDiscount = this.changeDiscount.bind(this);
     	this.setCellId = this.setCellId.bind(this);
     	this.clearFields = this.clearFields.bind(this);
@@ -51,11 +49,13 @@ class CreateInvoicesModal extends React.Component{
     	this.setState({
       		discount: +e.target.value
     	});
+
   	}
 	addQuanityCell(){
     	this.props.productsReducer.dataProducts.filter((value)=>{
       		if(this.productValue.value == value.name){
         		this.setState({
+        			id: 23,
         			customer: this.customerValue.value,
         			finalTotal: this.finalTotalValue.innerText,
           			productPrice: value.price,
@@ -67,7 +67,7 @@ class CreateInvoicesModal extends React.Component{
   	}
   	clearFields(){
   		this.setState({
-			id:'',
+			id: '',
 			customer: '',
 			productName: '',
       		productPrice: '',
@@ -77,14 +77,12 @@ class CreateInvoicesModal extends React.Component{
       		finalTotal: ''
   		})
   	}
-  	countTotal(){
-  		
-  	}
   	loadInvoice(){
+  		
   		store.dispatch({
   			type: "CREATE_NEW_INVOICE",
   			payload: [{
-  				id: '1',
+  				id: this.state.products.length,//this.props.customersReducer.dataCustomers.find((value)=>{if(value.name == this.state.customer){return value.id}}).id,
   				name: this.state.customer,
   				products: this.state.products,
   				discount: this.state.discount,
@@ -112,7 +110,6 @@ class CreateInvoicesModal extends React.Component{
   				}
   			})
   		});
-
   	}
 	spCell(){
 	let products = this.state.products.map((value, index)=>{
@@ -121,7 +118,7 @@ class CreateInvoicesModal extends React.Component{
 	return products;
 	}
 	render(){
-    //console.log(this.state.finalTotal);
+
 		return(
 			<Modal show={this.props.invoicesReducer.editInvoicesModal} onHide={()=>{
 				store.dispatch({type: "CLOSE_INVOICES_MODAL", payload: false});
