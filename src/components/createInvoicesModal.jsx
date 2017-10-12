@@ -77,7 +77,9 @@ class CreateInvoicesModal extends React.Component{
   		})
   	}
   	loadInvoice(){
-  		
+  		if(this.state.products.length === 0){
+          alert('Please, select and add product!');
+      }else{
   		store.dispatch({
   			type: "CREATE_NEW_INVOICE",
   			payload: [{
@@ -91,6 +93,7 @@ class CreateInvoicesModal extends React.Component{
   		setTimeout(()=>{
         	this.clearFields();
       	},1000);
+     }
   	}
   	setCellId(e){
   		this.setState({
@@ -110,14 +113,13 @@ class CreateInvoicesModal extends React.Component{
   			})
   		});
   	}
-	spCell(){
-	let products = this.state.products.map((value, index)=>{
+	 spCell(){
+	   let products = this.state.products.map((value, index)=>{
     		return <QuanityCell {...value} num={index} key={index} setCellId={this.setCellId}/>
     	});
-	return products;
-	}
+	   return products;
+	 }
 	render(){
-
 		return(
 			<Modal show={this.props.invoicesReducer.editInvoicesModal} onHide={()=>{
 				store.dispatch({type: "CLOSE_INVOICES_MODAL", payload: false});
