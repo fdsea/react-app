@@ -22,8 +22,9 @@ class CreateInvoicesModal extends React.Component{
 		this.changeProduct = this.changeProduct.bind(this);
 		this.addQuanityCell = this.addQuanityCell.bind(this);
 		this.spCell = this.spCell.bind(this);
-    this.countTotal = this.countTotal.bind(this);
-    this.changeDiscount = this.changeDiscount.bind(this);
+    	this.countTotal = this.countTotal.bind(this);
+    	this.changeDiscount = this.changeDiscount.bind(this);
+    	this.setCellId = this.setCellId.bind(this);
 	}
 	changeCustomer(e){
 		this.setState({
@@ -44,8 +45,7 @@ class CreateInvoicesModal extends React.Component{
 	}
   changeDiscount(e){
     this.setState({
-      discount: +e.target.value,
-      total: ''
+      discount: +e.target.value
     });
   }
 	addQuanityCell(){
@@ -53,7 +53,7 @@ class CreateInvoicesModal extends React.Component{
       if(this.productValue.value == value.name){
         this.setState({
           productPrice: value.price,
-          products: [...this.state.products, {name: this.productValue.value, price: value.price, quanity: 1}],
+          products: [...this.state.products, {name: this.productValue.value, price: value.price, quanity: 1, id: 0}],
           total: [...this.state.total, value.price]
         });
       }
@@ -64,15 +64,25 @@ class CreateInvoicesModal extends React.Component{
       total: !this.state.products.length ? '00.00' : +this.state.products.map((value)=>(value.price * value.quanity) - ((value.price * value.quanity) / 100 * this.state.discount)).reduce( (a, b) => a + b).toFixed(2)
     });
   }
+  setCellId(e){
+  	this.setState({
+  		products: [...this.state.products].map((value, index)=>{
+  			if(index === +e.target.getAttribute('data-id')){
+  				return {...value, quanity: +e.target.value}
+  			}else{
+  				return {...value}
+  			}
+  		})
+  	});
+  }
 	spCell(){
 	let products = this.state.products.map((value, index)=>{
-    		return <QuanityCell {...value} num={index} key={index} />
+    		return <QuanityCell {...value} num={index} key={index} setCellId={this.setCellId}/>
     	});
 	return products;
 	}
 	render(){
-    console.log(this.state.discount);
-
+    console.log(this.state.products);
 		return(
 			<Modal show={this.props.invoicesReducer.editInvoicesModal} onHide={()=>{
 				store.dispatch({type: "CLOSE_INVOICES_MODAL", payload: false});
@@ -84,7 +94,7 @@ class CreateInvoicesModal extends React.Component{
 					<Form>
 						<FormGroup controlId="discountValueModal">
 							<ControlLabel> Discount (%) </ControlLabel>
-							<FormControl onChange={this.changeDiscount}></FormControl>
+							<FormControl onChange={this.changeDiscount} defaultValue = {'0'}></FormControl>
 						</FormGroup>
 						<FormGroup controlId="customerSelectModal">
       						<ControlLabel>Customers</ControlLabel>
