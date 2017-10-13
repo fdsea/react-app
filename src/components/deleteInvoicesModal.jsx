@@ -7,7 +7,6 @@ class DeleteInvoiceModal extends React.Component{
     super(props);
   }
   render(){
-    console.log(this.props.invoicesReducer.deleteModal); 
     return(
         <Modal show={this.props.invoicesReducer.deleteModal.deleteState} onHide={()=>{
         	store.dispatch({type: "CLOSE_DELETE_INVOICES_MODAL", payload: {deleteState: false}})

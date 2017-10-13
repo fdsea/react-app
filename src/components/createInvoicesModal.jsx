@@ -83,7 +83,7 @@ class CreateInvoicesModal extends React.Component{
   		store.dispatch({
   			type: "CREATE_NEW_INVOICE",
   			payload: [{
-  				id: this.state.products.length,//this.props.customersReducer.dataCustomers.find((value)=>{if(value.name == this.state.customer){return value.id}}).id,
+  				id: this.props.invoicesReducer.dataInvoices.length+1,//this.props.customersReducer.dataCustomers.find((value)=>{if(value.name == this.state.customer){return value.id}}).id,
   				name: this.state.customer,
   				products: this.state.products,
   				discount: this.state.discount,
@@ -120,6 +120,7 @@ class CreateInvoicesModal extends React.Component{
 	   return products;
 	 }
 	render(){
+
 		return(
 			<Modal show={this.props.invoicesReducer.editInvoicesModal} onHide={()=>{
 				store.dispatch({type: "CLOSE_INVOICES_MODAL", payload: false});

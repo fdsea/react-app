@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { FormGroup, FormControl, Button } from 'react-bootstrap';
 
-const QuanityCell = ({num, name, quanity, price, setCellId }) => {
+const QuanityCell = ({num, name, quanity, price, setCellId, deleteBtn, deleteQuanity }) => {
 	return(
 		<tr>
     		<td>{ name }</td>
@@ -11,6 +11,9 @@ const QuanityCell = ({num, name, quanity, price, setCellId }) => {
     				<FormControl defaultValue = {quanity} onChange={setCellId} data-id = {num}></FormControl>
     			</FormGroup>
     		</td>
+            {
+                (deleteBtn) ? (<td><Button bsStyle="danger" bsSize="xsmall" onClick = {deleteQuanity} data-delete-btn = {num}>Delete</Button></td>) : <td></td>
+            }
     	</tr>
 	);
 };

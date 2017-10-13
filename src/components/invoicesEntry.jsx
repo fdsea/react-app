@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import store from './../store';
 
 const InvoicesEntry = ({id, name, discount, products, total, num}) => {
+	
 	return(
 		<tr>
 			<td>{ num }</td>
@@ -13,7 +14,10 @@ const InvoicesEntry = ({id, name, discount, products, total, num}) => {
 			<td>
 			<Button bsStyle="warning"
 					bsSize="xsmall"
-
+					onClick = {()=>{ store.dispatch({
+						type: "LOAD_DATA_INVOICES_EDIT",
+						payload: num
+					})}}
 					><Link key={num-1} to={`/invoices/${num}/edit`} style = {{textDecoration: 'none', color: "#fff"}}
 					>Edit</Link></Button>
 			<Button bsStyle="danger"
