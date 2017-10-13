@@ -8,7 +8,7 @@ const QuanityCell = ({num, name, quanity, price, setCellId, deleteBtn, deleteQua
     		<td>{ price }</td>
     		<td>
     			<FormGroup>
-    				<FormControl defaultValue = {quanity} onChange={setCellId} data-id = {num}></FormControl>
+    				<FormControl defaultValue = {quanity} onChange={setCellId} data-id = {num} ></FormControl>
     			</FormGroup>
     		</td>
             {

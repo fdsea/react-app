@@ -13,15 +13,20 @@ const beginInvoicesState = {
 			products: [{}],
 			total: ''
 		},
+		editTotal: [],
 		getInvoice: function (id) {
 			return this.dataInvoices.find((invoice)=>{
 				if(invoice.id == +id){return invoice} 
 			})
+		},
+		getTotal: function (id) {
+			return this.dataInvoices.find((invoice)=>{if(invoice.id == +id){return invoice}}).products.map((val)=>{
+						return ({price: val.price, quanity: val.quanity})
+					})
 		}
 };
 
 const invoicesReducer = (state = beginInvoicesState, action) => {
-	
 	switch(action.type){
 		case "OPEN_INVOICES_MODAL" : return state = {...state, editInvoicesModal: action.payload};
 		case "CLOSE_INVOICES_MODAL" : return state = {...state, editInvoicesModal: action.payload};
@@ -34,7 +39,9 @@ const invoicesReducer = (state = beginInvoicesState, action) => {
 			...state.dataInvoices.slice(state.deleteModal.id+1)
 			]
 		};
-		case "LOAD_DATA_INVOICES_EDIT" : return state = {...state, editInvoice: state.getInvoice(action.payload)};
+		case "LOAD_DATA_INVOICES_EDIT" : return state = {...state, editInvoice: state.getInvoice(action.payload),
+																   editTotal: [...state.editTotal, state.getTotal(action.payload)]
+																};
 		case "EDIT_INVOICE" : return state = {...state};
 		default: return state = {...state};
 

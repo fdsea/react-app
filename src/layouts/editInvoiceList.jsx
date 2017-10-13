@@ -9,15 +9,28 @@ class EditInvoiceCustomer extends React.Component{
 	constructor(props) {
         super(props);
         this.state = {
-            editData: store.getState().invoicesReducer.editInvoice
+            discount: 0,
+            editData: store.getState().invoicesReducer.editInvoice,
+            total: []
         }
+
        this.spCell = this.spCell.bind(this);
        this.deleteQuanityCell = this.deleteQuanityCell.bind(this);
        this.addQuanityCell = this.addQuanityCell.bind(this);
+       this.setCellId = this.setCellId.bind(this);
+       this.changeDiscount = this.changeDiscount.bind(this);
+    }
+    componentWillMount(){
+        const products = this.state.editData.products.map((value)=>{
+            return {price: value.price, quanity: value.quanity}
+        });
+        this.setState({
+            total: [...products]
+        })
     }
     spCell(){
        let products = this.state.editData.products.map((value, index)=>{
-            return <QuanityCell {...value} num={index} key={index} setCellId={this.setCellId} deleteBtn={true} deleteQuanity = {this.deleteQuanityCell}/>
+            return <QuanityCell quanity={value.quanity}  {...value} num={index} key={index} setCellId={this.setCellId} deleteBtn={true} deleteQuanity = {this.deleteQuanityCell}/>
         });
        return products;
      }
@@ -31,20 +44,40 @@ class EditInvoiceCustomer extends React.Component{
         })
      }
      addQuanityCell(){
-        //console.log(store.getState().productsReducer.dataProducts);
-        console.log(this.productValue.value);
-        this.setState({
-            editData : {...this.state.editData, products: [...this.state.editData.products, 
-               store.getState().productsReducer.dataProducts.find((value)=>{
-                if(value.name == this.productValue.value){
-                    return value
-                }
-               })
-            ]}
-        })
-        
+        store.getState().productsReducer.dataProducts.find((value)=>{
+            if(value.name == this.productValue.value){
+                 this.setState({
+                    editData: {...this.state.editData, products: [...this.state.editData.products, value]},
+                    total: [...this.state.total, {price: value.price, quanity: 1}]
+                }) 
+            }
+        }) 
      }
+     setCellId(e){
+        this.setState({
+            products: [...this.state.editData.products].map((value, index)=>{
+                if(index === +e.target.getAttribute('data-id')){
+                    return {...value, quanity: +e.target.value}
+                }else{
+                    return {...value}
+                }
+            }),
+            total: [...this.state.total].map((value, index)=>{
+                if(index === +e.target.getAttribute('data-id')){
+                    return {...value, quanity: +e.target.value}
+                }else{
+                    return {...value}
+                }
+            })
+        });
+    }
+    changeDiscount(e){
+        this.setState({
+            discount: +e.target.value
+        })
+    }
     render(){
+        console.log(this.state.total, this.state.discount);
         return(
             <Grid>
                 <Row>
@@ -53,7 +86,7 @@ class EditInvoiceCustomer extends React.Component{
                         <Form>
                             <FormGroup >
                                 <ControlLabel> Discount (%) </ControlLabel>
-                                <FormControl  defaultValue = {this.state.editData.discount}></FormControl>
+                                <FormControl  defaultValue = {this.state.editData.discount} onChange={this.changeDiscount} inputRef={(input)=>{this.discountValue = input}}></FormControl>
                             </FormGroup>
                             <FormGroup>
                                 <ControlLabel>Customers</ControlLabel>
@@ -89,10 +122,16 @@ class EditInvoiceCustomer extends React.Component{
                             }
                             </tbody>
                         </Table>
-                        <h2> Total: <span  ref = {(span)=>{this.finalTotalValue = span}}>00:00</span></h2> 
+                        <h2> Total: 
+                            <span ref = {(span)=>{this.finalTotalValue = span}}>{
+                                !this.state.total.length ? '0.00' : this.state.total.map((value, index) => {
+                                    return +value.price * +value.quanity - +value.price * +value.quanity * this.state.discount / 100
+                                }).reduce((a, b)=> a + b).toFixed(2)
+                            }
+                        </span>
+                        </h2> 
                         <Button bsStyle="success">Edit Invoice</Button>
                        <Link style={{color: '#fff', textDecoration: 'none'}} 
-                             key = {(this.state.editData.id).toString()} 
                              to = "/invoices">
                         <Button  style={{display: 'block', marginTop: "1em"}}
                                  bsStyle="primary" 
@@ -107,40 +146,3 @@ class EditInvoiceCustomer extends React.Component{
 }
 
 export default EditInvoiceCustomer;
-/*
-            <Form>
-                <FormGroup >
-                    <ControlLabel> Discount (%) </ControlLabel>
-                    <FormControl  defaultValue = {'0'}></FormControl>
-                </FormGroup>
-                <FormGroup >
-                    <ControlLabel>Customers</ControlLabel>
-                        <FormControl componentClass="select" placeholder="select" value={this.state.customer}  >
-                                
-                        </FormControl>
-                </FormGroup>
-                <FormGroup  style={{display: 'inline-block', width:"70%"}} >
-                    <ControlLabel>Add Product</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
-                               
-                    </FormControl>
-                </FormGroup>
-                    <Button style={{display: 'inline-block', width:"27%", marginLeft: "2%"}}
-                                bsStyle="success"
-                               
-                    >Add</Button>
-            </Form>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Qty</th>
-                    </tr>
-                </thead>
-                <tbody>
-                           
-                </tbody>
-            </Table>
-            <h2> Total: <span  ref = {(span)=>{this.finalTotalValue = span}}>00:00</span></h2> 
-            <Button bsStyle="success" onClick={this.loadInvoice}>Edit Invoice</Button>*/
