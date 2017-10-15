@@ -39,10 +39,10 @@ const invoicesReducer = (state = beginInvoicesState, action) => {
 			...state.dataInvoices.slice(state.deleteModal.id+1)
 			]
 		};
-		case "LOAD_DATA_INVOICES_EDIT" : return state = {...state, editInvoice: state.getInvoice(action.payload),
-																   editTotal: [...state.editTotal, state.getTotal(action.payload)]
-																};
-		case "EDIT_INVOICE" : return state = {...state};
+		case "LOAD_DATA_INVOICES_EDIT" : return state = {...state, editInvoice: state.getInvoice(action.payload)};
+		case "EDIT_INVOICE" : return state = {...state, dataInvoices: [...state.dataInvoices].map((value)=>{
+			if(value.id === action.payload.id){return action.payload;}else{return value;}
+		})};
 		default: return state = {...state};
 
 	}

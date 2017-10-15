@@ -13,12 +13,12 @@ class EditInvoiceCustomer extends React.Component{
             editData: store.getState().invoicesReducer.editInvoice,
             total: []
         }
-
        this.spCell = this.spCell.bind(this);
        this.deleteQuanityCell = this.deleteQuanityCell.bind(this);
        this.addQuanityCell = this.addQuanityCell.bind(this);
        this.setCellId = this.setCellId.bind(this);
        this.changeDiscount = this.changeDiscount.bind(this);
+       this.toMakeChanges = this.toMakeChanges.bind(this);
     }
     componentWillMount(){
         const products = this.state.editData.products.map((value)=>{
@@ -30,24 +30,26 @@ class EditInvoiceCustomer extends React.Component{
     }
     spCell(){
        let products = this.state.editData.products.map((value, index)=>{
-            return <QuanityCell quanity={value.quanity}  {...value} num={index} key={index} setCellId={this.setCellId} deleteBtn={true} deleteQuanity = {this.deleteQuanityCell}/>
+            return <QuanityCell quanity={value.quanity} {...value} num={index} key={index.toString()} setCellId={this.setCellId} deleteBtn={true} deleteQuanity = {this.deleteQuanityCell}/>
         });
        return products;
      }
      deleteQuanityCell(e){
-        console.log(+e.target.getAttribute('data-delete-btn'));
         this.setState({
            editData: {...this.state.editData, products: [
                ...this.state.editData.products.slice(0, +e.target.getAttribute('data-delete-btn')),
                ...this.state.editData.products.slice(+e.target.getAttribute('data-delete-btn') + 1)
-            ]}
+            ]},
+            total: [...this.state.total.slice(0, +e.target.getAttribute('data-delete-btn')),
+                    ...this.state.total.slice(+e.target.getAttribute('data-delete-btn') + 1)
+            ]
         })
      }
      addQuanityCell(){
         store.getState().productsReducer.dataProducts.find((value)=>{
             if(value.name == this.productValue.value){
                  this.setState({
-                    editData: {...this.state.editData, products: [...this.state.editData.products, value]},
+                    editData: {...this.state.editData, products: [...this.state.editData.products, {name: value.name, price: value.price, quanity: 1}]},
                     total: [...this.state.total, {price: value.price, quanity: 1}]
                 }) 
             }
@@ -55,13 +57,14 @@ class EditInvoiceCustomer extends React.Component{
      }
      setCellId(e){
         this.setState({
-            products: [...this.state.editData.products].map((value, index)=>{
+            editData: {...this.state.editData , products: [...this.state.editData.products].map((value, index)=>{
                 if(index === +e.target.getAttribute('data-id')){
                     return {...value, quanity: +e.target.value}
                 }else{
                     return {...value}
                 }
-            }),
+            }) 
+        },
             total: [...this.state.total].map((value, index)=>{
                 if(index === +e.target.getAttribute('data-id')){
                     return {...value, quanity: +e.target.value}
@@ -76,8 +79,20 @@ class EditInvoiceCustomer extends React.Component{
             discount: +e.target.value
         })
     }
+    toMakeChanges(){
+        store.dispatch({
+            type: "EDIT_INVOICE",
+            payload: {
+                id: this.state.editData.id,
+                name: this.state.editData.name,
+                products: this.state.editData.products,
+                discount: this.state.discount,
+                total: this.finalTotalValue.innerText
+            }
+        })
+    }
     render(){
-        console.log(this.state.total, this.state.discount);
+       console.log(store.getState().invoicesReducer.dataInvoices);
         return(
             <Grid>
                 <Row>
@@ -96,8 +111,8 @@ class EditInvoiceCustomer extends React.Component{
                                 <ControlLabel>Add Product</ControlLabel>
                                 <FormControl componentClass="select" placeholder="select" inputRef = {(input)=>{this.productValue = input}}>
                                     {
-                                        store.getState().productsReducer.dataProducts.map((value)=>{
-                                            return <AllProductsForSelect product = {value.name} />
+                                        store.getState().productsReducer.dataProducts.map((value, index)=>{
+                                            return <AllProductsForSelect key = {index.toString()} product = {value.name} />
                                         })
                                     }
                                 </FormControl>
@@ -118,8 +133,8 @@ class EditInvoiceCustomer extends React.Component{
                             </thead>
                             <tbody>
                                 {
-                                (this.state.editData.products.length === 0) ? (<tr><td><h3>No Products</h3></td></tr>) : this.spCell()
-                            }
+                                    (this.state.editData.products.length === 0) ? (<tr><td><h3>No Products</h3></td></tr>) : this.spCell()
+                                }
                             </tbody>
                         </Table>
                         <h2> Total: 
@@ -130,7 +145,10 @@ class EditInvoiceCustomer extends React.Component{
                             }
                         </span>
                         </h2> 
-                        <Button bsStyle="success">Edit Invoice</Button>
+                        <Button bsStyle="success"
+                                onClick = {this.toMakeChanges}
+
+                        >Edit Invoice</Button>
                        <Link style={{color: '#fff', textDecoration: 'none'}} 
                              to = "/invoices">
                         <Button  style={{display: 'block', marginTop: "1em"}}

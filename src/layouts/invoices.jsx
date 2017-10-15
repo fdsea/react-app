@@ -14,11 +14,11 @@ class Invoices extends React.Component{
 	render(){
 		return (
 			<Grid>
-			<Switch>
-				<Route exact path='/invoices' component = { AllInvoices } />
-				<Route path="/invoices/:number/edit" component = { EditInvoiceCustomer } />
-			</Switch>
-			<DeleteInvoiceModal {...store.getState()}/>
+				<Switch>
+					<Route exact path='/invoices' component = { AllInvoices } />
+					<Route path="/invoices/:number/edit" component = { EditInvoiceCustomer } />
+				</Switch>
+				<DeleteInvoiceModal {...store.getState()}/>
 			</Grid>	
 		);
 	}
