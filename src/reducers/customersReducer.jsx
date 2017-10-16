@@ -2,7 +2,7 @@ import React from 'react';
 
 const beginCustomersState = {
 		editModal: {editState: false, id: 1},
-		deleteModal: {deleteState: false, id: 1},
+		deleteModal: {deleteState: false, id: 1, delId: 1},
 		dataCustomers: [],
 		getCustomer : function () {
 			if(this.editModal.editState){

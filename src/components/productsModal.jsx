@@ -15,6 +15,7 @@ class ProductsModal extends React.Component{
     this.changePrice = this.changePrice.bind(this);
     this.addProducts = this.addProducts.bind(this);
     this.clearFields = this.clearFields.bind(this);
+    this.fetchAPI = this.fetchAPI.bind(this);
   }
   changeName(e){
     this.setState({
@@ -32,7 +33,26 @@ class ProductsModal extends React.Component{
         localPriceValue: ''
       });
     }
+    fetchAPI(url, method, sendBody){
+      fetch(url, {
+          method: method,
+          headers: {
+            'Content-type': 'application/json'
+          }, 
+          body: JSON.stringify( sendBody )
+        })
+      .then((res) => res.json() )
+      .then((data) => {
+        console.log(JSON.stringify( sendBody ));
+      })
+      .catch((err) => console.log('database send err') )
+    }
     addProducts(){
+      this.fetchAPI('/api/products', 'post', {
+        id: this.props.productsReducer.dataProducts.length+1,
+        name: this.state.localNameValue,
+        price: this.state.localPriceValue
+      });
       store.dispatch({type: "ADD_PRODUCTS", payload: [{
               id: this.props.productsReducer.dataProducts.length+1,
               name: this.state.localNameValue,

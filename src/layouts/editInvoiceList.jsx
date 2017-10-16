@@ -3,7 +3,7 @@ import { Button, FormGroup, ControlLabel, FormControl, Form, Radio, Table, Grid,
 import store from './../store';
 import { Link } from 'react-router-dom';
 import AllProductsForSelect from './../components/allProductsForSelect';
-import QuanityCell from './../components/quanityCell'
+import QuantityCell from './../components/quantityCell'
 
 class EditInvoiceCustomer extends React.Component{
 	constructor(props) {
@@ -14,15 +14,15 @@ class EditInvoiceCustomer extends React.Component{
             total: []
         }
        this.spCell = this.spCell.bind(this);
-       this.deleteQuanityCell = this.deleteQuanityCell.bind(this);
-       this.addQuanityCell = this.addQuanityCell.bind(this);
+       this.deleteQuantityCell = this.deleteQuantityCell.bind(this);
+       this.addQuantityCell = this.addQuantityCell.bind(this);
        this.setCellId = this.setCellId.bind(this);
        this.changeDiscount = this.changeDiscount.bind(this);
        this.toMakeChanges = this.toMakeChanges.bind(this);
     }
     componentWillMount(){
         const products = this.state.editData.products.map((value)=>{
-            return {price: value.price, quanity: value.quanity}
+            return {price: value.price, quantity: value.quantity}
         });
         this.setState({
             total: [...products]
@@ -30,11 +30,11 @@ class EditInvoiceCustomer extends React.Component{
     }
     spCell(){
        let products = this.state.editData.products.map((value, index)=>{
-            return <QuanityCell quanity={value.quanity} {...value} num={index} key={index.toString()} setCellId={this.setCellId} deleteBtn={true} deleteQuanity = {this.deleteQuanityCell}/>
+            return <QuantityCell quantity={value.quantity} {...value} num={index} key={index.toString()} setCellId={this.setCellId} deleteBtn={true} deleteQuantity = {this.deleteQuantityCell}/>
         });
        return products;
      }
-     deleteQuanityCell(e){
+     deleteQuantityCell(e){
         this.setState({
            editData: {...this.state.editData, products: [
                ...this.state.editData.products.slice(0, +e.target.getAttribute('data-delete-btn')),
@@ -45,12 +45,12 @@ class EditInvoiceCustomer extends React.Component{
             ]
         })
      }
-     addQuanityCell(){
+     addQuantityCell(){
         store.getState().productsReducer.dataProducts.find((value)=>{
             if(value.name == this.productValue.value){
                  this.setState({
-                    editData: {...this.state.editData, products: [...this.state.editData.products, {name: value.name, price: value.price, quanity: 1}]},
-                    total: [...this.state.total, {price: value.price, quanity: 1}]
+                    editData: {...this.state.editData, products: [...this.state.editData.products, {name: value.name, price: value.price, quantity: 1}]},
+                    total: [...this.state.total, {price: value.price, quantity: 1}]
                 }) 
             }
         }) 
@@ -59,7 +59,7 @@ class EditInvoiceCustomer extends React.Component{
         this.setState({
             editData: {...this.state.editData , products: [...this.state.editData.products].map((value, index)=>{
                 if(index === +e.target.getAttribute('data-id')){
-                    return {...value, quanity: +e.target.value}
+                    return {...value, quantity: +e.target.value}
                 }else{
                     return {...value}
                 }
@@ -67,7 +67,7 @@ class EditInvoiceCustomer extends React.Component{
         },
             total: [...this.state.total].map((value, index)=>{
                 if(index === +e.target.getAttribute('data-id')){
-                    return {...value, quanity: +e.target.value}
+                    return {...value, quantity: +e.target.value}
                 }else{
                     return {...value}
                 }
@@ -117,7 +117,7 @@ class EditInvoiceCustomer extends React.Component{
                                     }
                                 </FormControl>
                             </FormGroup>
-                            <Button style={{display: 'inline-block', width:"27%", marginLeft: "2%"}} bsStyle="success" onClick={this.addQuanityCell}>Add</Button>
+                            <Button style={{display: 'inline-block', width:"27%", marginLeft: "2%"}} bsStyle="success" onClick={this.addQuantityCell}>Add</Button>
                         </Form>
                     </Col>
                 </Row>
@@ -140,7 +140,7 @@ class EditInvoiceCustomer extends React.Component{
                         <h2> Total: 
                             <span ref = {(span)=>{this.finalTotalValue = span}}>{
                                 !this.state.total.length ? '0.00' : this.state.total.map((value, index) => {
-                                    return +value.price * +value.quanity - +value.price * +value.quanity * this.state.discount / 100
+                                    return +value.price * +value.quantity - +value.price * +value.quantity * this.state.discount / 100
                                 }).reduce((a, b)=> a + b).toFixed(2)
                             }
                         </span>
@@ -164,3 +164,4 @@ class EditInvoiceCustomer extends React.Component{
 }
 
 export default EditInvoiceCustomer;
+

@@ -17,7 +17,7 @@ const ProductEntry = ({id, name, price, num}) => {
 				<Button bsStyle="danger"
 						bsSize="xsmall"
 						style={{marginLeft: '10px',fontSize: '0.7em'}}
-						onClick={()=>{store.dispatch({type:"OPEN_DELETE_PRODUCTS", payload: {deleteState: true, id: num-1}})}}>Delete</Button>
+						onClick={()=>{store.dispatch({type:"OPEN_DELETE_PRODUCTS", payload: {deleteState: true, id: num-1, delId: id}})}}>Delete</Button>
 			</td>	
 	 	</tr>
 	);

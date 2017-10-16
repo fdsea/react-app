@@ -2,7 +2,7 @@ import React from 'react';
 
 const beginProductsState = {
 	editModal: {editState: false, id: 1},
-	deleteModal: {deleteState: false, id: 1},
+	deleteModal: {deleteState: false, id: 1, delId: 1},
 	dataProducts: [],
 	getProduct : function () {
 		if(this.editModal.editState){

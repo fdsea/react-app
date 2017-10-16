@@ -16,6 +16,8 @@ class EditProductsModal extends React.Component{
     };
     this.changeName = this.changeName.bind(this);
     this.changePrice = this.changePrice.bind(this);
+    this.sendEditData = this.sendEditData.bind(this);
+    this.fetchAPI = this.fetchAPI.bind(this);
   }
   changeName(e){
     this.setState({
@@ -27,6 +29,28 @@ class EditProductsModal extends React.Component{
     this.setState({
       editValue: {...this.state.editValue, price: e.target.value}
     }); 
+  }
+  fetchAPI(url, method, sendBody){
+      fetch(url, {
+          method: method,
+          headers: {
+            'Content-type': 'application/json'
+          }, 
+          body: JSON.stringify( sendBody )
+        })
+      .then((res) => res.json() )
+      .then((data) => {
+        console.log('PUT');
+      })
+      .catch((err) => console.log('database send err') )
+    }
+  sendEditData(){
+    this.fetchAPI(`/api/products/${this.props.productsReducer.editModal.id}`, 'put', {
+      id: this.props.productsReducer.editModal.id,
+      name: this.name.value,
+      price: this.price.value
+    })
+    store.dispatch({type: "EDIT_PRODUCTS", payload: {id: this.props.productsReducer.editModal.id, name: this.name.value, price: this.price.value}})
   }
  render(){
     return(
@@ -42,7 +66,8 @@ class EditProductsModal extends React.Component{
                 <FormControl type="text" 
                              className="editFormQuerySelectorProducts"
                              placeholder="Enter name"  
-                             onChange = {this.changeName} 
+                             onChange = {this.changeName}
+                             inputRef = {(input)=>{this.name = input}}  
                              defaultValue = {this.props.productsReducer.getProduct().name } />
                               
               </FormGroup>
@@ -52,11 +77,10 @@ class EditProductsModal extends React.Component{
                              className="editFormQuerySelectorProducts"
                              placeholder="Enter price"
                              onChange = {this.changePrice}
+                             inputRef = {(input)=>{this.price = input}} 
                              defaultValue = {this.props.productsReducer.getProduct().price } />
               </FormGroup>
-              <Button onClick = {()=>{
-                let a = [...document.querySelectorAll('.editFormQuerySelectorProducts')].map((v)=>{return v.value});
-                  store.dispatch({type: "EDIT_PRODUCTS", payload: {id: this.props.productsReducer.editModal.id, name: a[0], price: a[1]}})}}>
+              <Button onClick = {this.sendEditData}>
                 Submit
               </Button>
             </Form>

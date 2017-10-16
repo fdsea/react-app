@@ -17,7 +17,6 @@ class Products extends React.Component{
 		};
 		this.showProductsModal = this.showProductsModal.bind(this);
 		this.hideProductsModal = this.hideProductsModal.bind(this);
-		
 	}
 	showProductsModal(){
 		this.setState({
@@ -29,7 +28,6 @@ class Products extends React.Component{
 			showModal: false
 		});
 	}
-	
 	render(){
 		return(
 			<Grid>
@@ -55,4 +53,3 @@ class Products extends React.Component{
 
 }
 export default Products;
-/*<EditProductsModal {...store.getState()}/>*/

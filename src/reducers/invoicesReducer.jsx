@@ -18,13 +18,8 @@ const beginInvoicesState = {
 			return this.dataInvoices.find((invoice)=>{
 				if(invoice.id == +id){return invoice} 
 			})
-		},
-		getTotal: function (id) {
-			return this.dataInvoices.find((invoice)=>{if(invoice.id == +id){return invoice}}).products.map((val)=>{
-						return ({price: val.price, quanity: val.quanity})
-					})
 		}
-};
+	};
 
 const invoicesReducer = (state = beginInvoicesState, action) => {
 	switch(action.type){

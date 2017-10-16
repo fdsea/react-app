@@ -18,6 +18,7 @@ class CustomersModal extends React.Component{
     this.changePhone = this.changePhone.bind(this);
     this.addCustomers = this.addCustomers.bind(this);
     this.clearFields = this.clearFields.bind(this);
+    this.fetchAPI = this.fetchAPI.bind(this);
 	}
   changeName(e){
     this.setState({
@@ -41,18 +42,39 @@ class CustomersModal extends React.Component{
         localPhoneValue: ''
       });
     }
+
+    fetchAPI(url, method, sendBody){
+      fetch(url, {
+          method: method,
+          headers: {
+            'Content-type': 'application/json'
+          }, 
+          body: JSON.stringify( sendBody )
+        })
+      .then((res) => res.json() )
+      .then((data) => {
+        console.log(JSON.stringify( sendBody ));
+      })
+      .catch((err) => console.log('database send err') )
+    }
     addCustomers(){
-      store.dispatch({type: "ADD_CUSTOMERS", payload: [{
-              id: this.props.customersReducer.dataCustomers.length+1,
+      this.fetchAPI('/api/customers', 'post', {
+              id: 1,
               name: this.state.localNameValue,
               address: this.state.localAddressValue,
               phone: this.state.localPhoneValue
-      }]
-    });
-       
-    setTimeout(()=>{
-      this.clearFields();
-    },1000);
+      });
+
+        store.dispatch({type: "ADD_CUSTOMERS", payload: [{
+             id: this.props.customersReducer.dataCustomers.length+1,
+             name: this.state.localNameValue,
+             address: this.state.localAddressValue,
+             phone: this.state.localPhoneValue
+        }]
+   });
+      setTimeout(()=>{
+          this.clearFields();
+      },1000);
   }
   render() {
     return (

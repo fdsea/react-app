@@ -3,7 +3,7 @@ import { Modal, Button, FormGroup, ControlLabel, FormControl, Form, Radio, Table
 import store from './../store';
 import AllCustomersForSelect from './allCustomersForSelect';
 import AllProductsForSelect from './allProductsForSelect';
-import QuanityCell from './quanityCell';
+import QuantityCell from './quantityCell';
 
 class CreateInvoicesModal extends React.Component{
 	constructor(){
@@ -13,7 +13,7 @@ class CreateInvoicesModal extends React.Component{
 			customer: '',
 			productName: '',
       		productPrice: '',
-      		productQuanity: '',
+      		productQuantity: '',
 			products: [],
 			discount: 0,
       		total: [],
@@ -21,7 +21,7 @@ class CreateInvoicesModal extends React.Component{
 		};
 		this.changeCustomer = this.changeCustomer.bind(this);
 		this.changeProduct = this.changeProduct.bind(this);
-		this.addQuanityCell = this.addQuanityCell.bind(this);
+		this.addQuantityCell = this.addQuantityCell.bind(this);
 		this.spCell = this.spCell.bind(this);
     	this.changeDiscount = this.changeDiscount.bind(this);
     	this.setCellId = this.setCellId.bind(this);
@@ -51,15 +51,15 @@ class CreateInvoicesModal extends React.Component{
     	});
 
   	}
-	addQuanityCell(){
+	addQuantityCell(){
     	this.props.productsReducer.dataProducts.filter((value)=>{
       		if(this.productValue.value == value.name){
         		this.setState({
         			customer: this.customerValue.value,
         			finalTotal: this.finalTotalValue.innerText,
           			productPrice: value.price,
-          			products: [...this.state.products, {name: this.productValue.value, price: value.price, quanity: 1}],
-          			total: [...this.state.total, {price: value.price, quanity: 1}]
+          			products: [...this.state.products, {name: this.productValue.value, price: value.price, quantity: 1}],
+          			total: [...this.state.total, {price: value.price, quantity: 1}]
         		});
       		}
     	});
@@ -83,7 +83,7 @@ class CreateInvoicesModal extends React.Component{
   		store.dispatch({
   			type: "CREATE_NEW_INVOICE",
   			payload: [{
-  				id: this.props.invoicesReducer.dataInvoices.length+1,//this.props.customersReducer.dataCustomers.find((value)=>{if(value.name == this.state.customer){return value.id}}).id,
+  				id: this.props.invoicesReducer.dataInvoices.length+1,
   				name: this.state.customer,
   				products: this.state.products,
   				discount: this.state.discount,
@@ -99,14 +99,14 @@ class CreateInvoicesModal extends React.Component{
   		this.setState({
   			products: [...this.state.products].map((value, index)=>{
   				if(index === +e.target.getAttribute('data-id')){
-  					return {...value, quanity: +e.target.value}
+  					return {...value, quantity: +e.target.value}
   				}else{
   					return {...value}
   				}
   			}),
   			total: [...this.state.total].map((value, index)=>{
   				if(index === +e.target.getAttribute('data-id')){
-  					return {...value, quanity: +e.target.value}
+  					return {...value, quantity: +e.target.value}
   				}else{
   					return {...value}
   				}
@@ -115,7 +115,7 @@ class CreateInvoicesModal extends React.Component{
   	}
 	 spCell(){
 	   let products = this.state.products.map((value, index)=>{
-    		return <QuanityCell {...value} num={index} key={index} setCellId={this.setCellId}/>
+    		return <QuantityCell {...value} num={index} key={index} setCellId={this.setCellId}/>
     	});
 	   return products;
 	 }
@@ -158,7 +158,7 @@ class CreateInvoicesModal extends React.Component{
     					</FormGroup>
     					<Button style={{display: 'inline-block', width:"27%", marginLeft: "2%"}}
     							bsStyle="success"
-    	             			onClick = {this.addQuanityCell}
+    	             			onClick = {this.addQuantityCell}
     					>Add</Button>
     				</Form>
     				<Table>
@@ -178,7 +178,7 @@ class CreateInvoicesModal extends React.Component{
     				<h2> Total: <span className = "finalTotalCreateModal" ref = {(span)=>{this.finalTotalValue = span}}>{
               
                   !this.state.total.length ? '0.00' : this.state.total.map((value, index) => {
-                  	  return value.price * value.quanity - value.price * value.quanity * this.state.discount / 100 
+                  	  return value.price * value.quantity - value.price * value.quantity * this.state.discount / 100 
                   }).reduce((a, b)=> a + b).toFixed(2) 
 
               } </span></h2> 
