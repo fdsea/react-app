@@ -42,7 +42,6 @@ class CustomersModal extends React.Component{
         localPhoneValue: ''
       });
     }
-
     fetchAPI(url, method, sendBody){
       fetch(url, {
           method: method,

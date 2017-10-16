@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import store from './../store';
 
 const InvoicesEntry = ({id, name, discount, products, total, num}) => {
-	
 	return(
 		<tr>
 			<td>{ num }</td>
@@ -24,7 +23,7 @@ const InvoicesEntry = ({id, name, discount, products, total, num}) => {
 						bsSize="xsmall"
 						style={{marginLeft: '10px',fontSize: '0.7em'}}
 						onClick={()=>{store.dispatch({
-							type: "OPEN_DELETE_INVOICES_MODAL", payload: {deleteState: true, id: num-1}
+							type: "OPEN_DELETE_INVOICES_MODAL", payload: {deleteState: true, id: num-1, delId: id}
 						})}}
 						>Delete</Button>
 			</td>	

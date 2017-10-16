@@ -23,10 +23,10 @@ class CreateInvoicesModal extends React.Component{
 		this.changeProduct = this.changeProduct.bind(this);
 		this.addQuantityCell = this.addQuantityCell.bind(this);
 		this.spCell = this.spCell.bind(this);
-    	this.changeDiscount = this.changeDiscount.bind(this);
-    	this.setCellId = this.setCellId.bind(this);
-    	this.clearFields = this.clearFields.bind(this);
-    	this.loadInvoice = this.loadInvoice.bind(this);
+    this.changeDiscount = this.changeDiscount.bind(this);
+    this.setCellId = this.setCellId.bind(this);
+    this.clearFields = this.clearFields.bind(this);
+    this.loadInvoice = this.loadInvoice.bind(this);
 	}
 	changeCustomer(e){
 		this.setState({
@@ -120,7 +120,6 @@ class CreateInvoicesModal extends React.Component{
 	   return products;
 	 }
 	render(){
-
 		return(
 			<Modal show={this.props.invoicesReducer.editInvoicesModal} onHide={()=>{
 				store.dispatch({type: "CLOSE_INVOICES_MODAL", payload: false});
